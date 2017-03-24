@@ -1,0 +1,42 @@
+{>"layout" /}
+{<body}
+<div class="row">
+       <h1 class="text-center ">Managers Page</h1>
+    </div><br>
+
+    <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" name="search" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default search-resume" data-id="{id}" type="button">Go!</button>
+      </span>
+    </div>
+    <br>
+
+  <!--   <div ng-controller="MainCtrl">
+      <button id='toggleFiltering' ng-click="toggleFiltering()" class="btn btn-success">Toggle Filtering</button>
+      <div id="grid1" ui-grid="gridOptions" class="grid"></div>
+    </div>
+    	<br><br><br><br><br> -->
+    {#applicants}
+		<div class="well">
+			<h4>{firstname} {lastname} <button class="btn btn-default pull-right" data-toggle="collapse" data-target="#applicants_{id}" href="#applicants_{id}" aria-expanded="false" aria-controls="applicants_{id}">
+			<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+			</button></h4>
+			<div class="collapse" id="applicants_{id}">
+				<br />
+				<br />
+				<p><strong> Email:</strong>{email}</p>
+				<p><strong> Position:</strong>{position}</p>
+				<br />
+				<hr />
+				
+				<button class="btn btn-danger delete-resume" data-id="{id}">
+					<span class="glyphicon glyphicon-remove " aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+	{/applicants}
+	
+
+{/body}
