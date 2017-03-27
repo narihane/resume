@@ -4,6 +4,7 @@ var	express = require('express'),
 	cons = require('consolidate'),
 	dust = require('dustjs-helpers'),
 	pg = require('pg'),
+	fs = require('fs'),
 	app = express();
 
 // db connection string
@@ -57,15 +58,37 @@ app.get('/', function(req,res){
 });
 });
 app.post('/add', function(req,res){
+	console.log(req.body.position);
 	pg.connect(connect, function(err, client, done) {
   if(err) {
     return console.error('error fetching client from pool', err);
   }
-  client.query("INSERT INTO applicants(firstname, lastname, email, position) VALUES ($1, $2, $3, $4)", [req.body.firstname, req.body.lastname, req.body.email, req.body.position]);
+	// File file = new File("myimage.gif");
+	// FileInputStream fis = new FileInputStream(file);
+	// PreparedStatement ps = conn.prepareStatement("INSERT INTO applicants(resumefile) VALUES (fis)",[req.body.inputfile]);
+	// ps.setString(1, file.getName());
+	// ps.setBinaryStream(2, fis, file.length());
+	// ps.executeUpdate();
+	// ps.close();
+	// fis.close();
+
+  client.query("INSERT INTO applicants(firstname, lastname, email, position,resumefile) VALUES ($1, $2, $3, $4, $5)", [req.body.firstname, req.body.lastname, req.body.email, req.body.position, req.body.inputfile]);
   done();
+
   res.redirect('/');
 });
 });
+// app.get('/file', function(req,res){
+// 	pg.connect(connect, function(err, client, done) {
+//   if(err) {
+//     return console.error('error fetching client from pool', err);
+//   }
+// 	client.query("INSERT INTO applicants(resumefile) VALUES ($1)", [req.body.inputfile]);
+//   done();
+// 	console.log("done");
+//   res.redirect('/');
+// });
+// });
 
 app.post('/search', function(req,res){
   pg.connect(connect, function(err, client, done) {
@@ -120,6 +143,16 @@ app.delete('/delete/:id', function(req,res){
   res.sendStatus(200);
 });
 });
+
+// fs.readFile(loc_on_disk, 'hex', function(err, imgData) {
+//         console.log('imgData',imgData);
+//         imgData = '\\x' + imgData;
+//         app.pgClient.query('insert into image_table (image) values ($1)',
+//                            [imgData],
+//                            function(err, writeResult) {
+//           console.log('err',err,'pg writeResult',writeResult);
+//         });
+//       });
 // app.get('/search-resume', function(req,res){
 //   pg.connect(connect, function(err, client, done) {
 //   if(err) {
@@ -141,4 +174,3 @@ app.delete('/delete/:id', function(req,res){
 app.listen(3000, function(){
 	console.log('Server started');
 });
-

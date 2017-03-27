@@ -17,6 +17,11 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#inputfile").fileinput({
+     uploadUrl: '/add', // server upload action
+     uploadAsync: true,
+     maxFileCount: 5
+ });
 	$('.dropdown-toggle').dropdown()
 	// $('.search-resume').on('click', function(){
 	// 	var id = $(this).data('rid');
@@ -39,8 +44,4 @@ $(document).ready(function(){
 
 
 
-// $("#input-700").fileinput({
-//     uploadUrl: "http://localhost/file-upload-single/1", // server upload action
-//     uploadAsync: true,
-//     maxFileCount: 5
-// });
+//

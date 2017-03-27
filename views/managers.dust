@@ -2,7 +2,7 @@
 {<body}
 <div class="row">
        <h1 class="text-center ">Managers Page</h1>
-    </div><br>
+    <br>
 
     <div class="col-lg-6">
     <div class="input-group">
@@ -11,7 +11,8 @@
         <button class="btn btn-default search-resume" data-id="{id}" type="button">Go!</button>
       </span>
     </div>
-    <br>
+  </div>
+    <br><br><br>
 
   <!--   <div ng-controller="MainCtrl">
       <button id='toggleFiltering' ng-click="toggleFiltering()" class="btn btn-success">Toggle Filtering</button>
@@ -30,13 +31,13 @@
 				<p><strong> Position:</strong>{position}</p>
 				<br />
 				<hr />
-				
+
 				<button class="btn btn-danger delete-resume" data-id="{id}">
 					<span class="glyphicon glyphicon-remove " aria-hidden="true"></span>
 				</button>
 			</div>
 		</div>
 	{/applicants}
-	
+</div>
 
 {/body}
