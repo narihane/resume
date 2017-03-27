@@ -130,6 +130,28 @@ app.post('/sortL', function(req,res){
 });
 });
 
+app.post('/filter', function(req,res){
+
+	//PG connect
+	pg.connect(connect, function(err, client, done) {
+  if(err) {
+    return console.error('error fetching client from pool', err);
+  }
+console.log(req.body.positionF[0]);
+  client.query('SELECT * FROM applicants WHERE position=$1',[req.body.positionF[0]],  function(err, result) {
+
+    if(err) {
+      return console.error('error running query', err);
+    }
+    res.render('managers', {applicants: result.rows});
+    done();
+
+  });
+
+
+});
+});
+
 app.post('/add', function(req,res){
 	console.log(req.body.position);
 	pg.connect(connect, function(err, client, done) {

@@ -31,11 +31,22 @@
           <button class="btn sort-button" data-id="{id}" name="descendingL">
             <span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
           </button>
-
-
-
-
   </form>
+
+  <form method="post" action="/filter" >
+        Filter by position:<br>
+        <div class="dropdown">
+        <select class="ui fluid dropdown" name='positionF'>
+          <option value="IT">IT</option>
+          <option value="Manager">Manager</option>
+          <option value="HR">HR</option>
+          <option value="Sales">Sales</option>
+        </select>
+      </div>
+      <button class="btn sort-button" data-id="{id}" name="positionF">
+        <span class="glyphicon glyphicon glyphicon glyphicon-filter" aria-hidden="true"></span>
+      </button>
+      </form>
     <br><br><br><br>
 
     {#applicants}

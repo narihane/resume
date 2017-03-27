@@ -16,7 +16,7 @@ $(document).ready(function(){
 			});
 		}
 	});
-	
+
 
 	$("#inputfile").fileinput({
      uploadUrl: '/add', // server upload action
@@ -25,21 +25,7 @@ $(document).ready(function(){
  });
 	$('.dropdown-toggle').dropdown();
 
-	$('.search-resume').on('click', function(){
-		console.log('ll');
-		var url = '/search-resume';
-			$.ajax({
-				url: url,
-				method:'GET',
-				success: function(result){
-					console.log('Searching resume..');
-					window.location.href='/search-resume';
-					console.log('success');
-				},
-				error: function(err){
-					console.log(err);
-				}
-			});
+	
 
 	});
 
