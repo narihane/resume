@@ -10,35 +10,27 @@
 
 
     <div class="well">
-      <form method="post" action="/add">
-        First name:<br>
-         <input type="text" name="firstname"><br>
-        Last name:<br>
-         <input type="text" name="lastname"><br>
-        Email:<br>
-          <input type="text" name="email"><br>
-        Position:<br>
-          <div class="dropdown">
-            <!-- <button id="dLabel" class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Positions <span class="caret"></span>
-            </button> -->
-            <!-- <ul class="dropdown-menu" aria-labelledby="dLabel" name='position'>
-              <li value="IT"><a href="#" value="it">IT</a></li>
-              <li><a href="#" value="manager">Manager</a></li>
-              <li><a href="#" value="hr">HR</a></li>
-              <li><a href="#" value="sales">Sales</a></li>
-            </ul> -->
-            <select class="ui fluid dropdown" name='position'>
-              <option value="IT">IT</option>
-              <option value="Manager">Manager</option>
-              <option value="HR">HR</option>
-              <option value="Sales">Sales</option>
-            </select>
-          </div><br>
-        Select Resume:<br>
-         <input id="inputfile" name="kartik-input-700[]" type="file" multiple class="file-loading"> <br>
-        <input type="submit" class="btn btn-primary" value="Submit"/>
-      </form>
+         <form enctype="multipart/form-data" action="/upload" method="post">
+           First name:<br>
+            <input type="text" name="firstname"><br>
+           Last name:<br>
+            <input type="text" name="lastname"><br>
+           Email:<br>
+             <input type="text" name="email"><br>
+           Position:<br>
+             <div class="dropdown">
+
+               <select class="ui fluid dropdown" name='position'>
+                 <option value="IT">IT</option>
+                 <option value="Manager">Manager</option>
+                 <option value="HR">HR</option>
+                 <option value="Sales">Sales</option>
+               </select>
+             </div><br>
+             Select Resume:<br>
+           <input type="file" name="file" id='file'/>
+           <button type="submit" class="btn btn-black" name="upload" id="uploadbtn">Upload</button>
+         </form>
     </div>
 
   <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal">

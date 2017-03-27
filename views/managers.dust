@@ -22,7 +22,7 @@
     				</button>
 
 
-    </form><br><br><br>
+    </form><br>
     <form method="post" action="/sortL" >
           Sort by Lastname:<br>
           <button class="btn sort-button" data-id="{id}" name="ascendingL">
@@ -32,7 +32,7 @@
             <span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
           </button>
   </form>
-
+<br>
   <form method="post" action="/filter" >
         Filter by position:<br>
         <div class="dropdown">
@@ -59,6 +59,8 @@
 				<br />
 				<p><strong> Email:</strong>{email}</p>
 				<p><strong> Position:</strong>{position}</p>
+        <p><strong> Resume:</strong>
+            <a href="/resume/{id}">{resume_original}</a></p>
 				<br />
 				<hr />
 

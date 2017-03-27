@@ -18,18 +18,14 @@ $(document).ready(function(){
 	});
 
 
-	$("#inputfile").fileinput({
-     uploadUrl: '/add', // server upload action
-     uploadAsync: true,
-     maxFileCount: 5
- });
+
 	$('.dropdown-toggle').dropdown();
 
-	
+
 
 	});
 
-});
+
 
 
 
