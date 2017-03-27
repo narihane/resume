@@ -16,6 +16,7 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
 
 	$("#inputfile").fileinput({
      uploadUrl: '/add', // server upload action

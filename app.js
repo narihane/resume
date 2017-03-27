@@ -61,6 +61,41 @@ app.post('/search-resume', function(req,res){
 });
 });
 
+app.post('/sort', function(req,res){
+
+	//PG connect
+	pg.connect(connect, function(err, client, done) {
+  if(err) {
+    return console.error('error fetching client from pool', err);
+  }
+	console.log(req.body.ascending);
+	console.log(req.body.descending);
+	if(req.body.ascending!=undefined){
+  client.query('SELECT * FROM applicants ORDER BY firstname ASC',  function(err, result) {
+
+    if(err) {
+      return console.error('error running query', err);
+    }
+    res.render('managers', {applicants: result.rows});
+    done();
+
+  });
+}
+	else if(req.body.descending!=undefined){
+		client.query('SELECT * FROM applicants ORDER BY firstname DESC',  function(err, result) {
+
+	    if(err) {
+	      return console.error('error running query', err);
+	    }
+	    res.render('managers', {applicants: result.rows});
+	    done();
+
+	  });
+
+	}
+});
+});
+
 app.post('/add', function(req,res){
 	console.log(req.body.position);
 	pg.connect(connect, function(err, client, done) {

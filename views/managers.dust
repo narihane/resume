@@ -5,15 +5,34 @@
     <br>
         <form method="post" action="/search-resume">
           <div class="col-lg-6">
+            Search:<br>
             <div class="input-group">
-
           <input type="text" name="searchchar" placeholder="Press Enter to search...">
-
-
           </div>
         </div>
+      </form>
+      <form method="post" action="/sort" >
+        <div class="col-lg-6">
+            Sort:<br>
+            <button class="btn sort-button" data-id="{id}" name="ascending">
+    					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+    				</button>
+            <button class="btn sort-button" data-id="{id}" name="descending">
+    					<span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+    				</button>
+            <!-- <div class="list-group ">
+              <button type="button" class="list-group-item" name="ascending">Ascending</button>
+              <button type="button" class="list-group-item" name="descending">Descending</button>
+            </div> -->
+          <!-- <div class="dropdown">
+            <select class="ui fluid dropdown" name='sorting'>
+              <option value="ascending">Ascending</option>
+              <option value="descending">Descending</option>
+            </select>
+          </div> -->
+      </div>
     </form>
-    <br><br><br>
+    <br><br><br><br>
 
   <!--   <div ng-controller="MainCtrl">
       <button id='toggleFiltering' ng-click="toggleFiltering()" class="btn btn-success">Toggle Filtering</button>
