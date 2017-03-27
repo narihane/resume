@@ -16,6 +16,8 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+	$('.dropdown-toggle').dropdown()
 	// $('.search-resume').on('click', function(){
 	// 	var id = $(this).data('rid');
 	// 	var url = '/search-resume/' +id;
@@ -30,10 +32,12 @@ $(document).ready(function(){
 	// 				console.log(err);
 	// 			}
 	// 		});
-		
+
 	// });
 
 });
+
+
 
 // $("#input-700").fileinput({
 //     uploadUrl: "http://localhost/file-upload-single/1", // server upload action

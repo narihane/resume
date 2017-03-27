@@ -1,13 +1,13 @@
 {>"layout" /}
 
 {<body}
-  
+
   <br />
 
     <div class="row">
        <h1 class="text-center ">Submit Forms</h1>
     </div>
-      
+
 
     <div class="well">
       <form method="post" action="/add">
@@ -18,11 +18,11 @@
         Email:<br>
           <input type="text" name="email"><br>
         Position:<br>
-          <div class="btn-group">
-            <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="dropdown">
+            <button id="dLabel" class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Positions <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" >
+            <ul class="dropdown-menu" aria-labelledby="dLabel">
               <li><a href="#" class="it">IT</a></li>
               <li><a href="#" class="manager">Manager</a></li>
               <li><a href="#" class="hr">HR</a></li>
@@ -38,7 +38,7 @@
   <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal">
     Manager Log-in
   </button>
- 
+
 
   <!-- Add form Modal -->
 <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel">
@@ -58,7 +58,7 @@
             <label> Password</label>
             <input type="password" class="form-control" name="password"/>
           </div>
-          
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
