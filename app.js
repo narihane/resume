@@ -96,6 +96,40 @@ app.post('/sort', function(req,res){
 });
 });
 
+app.post('/sortL', function(req,res){
+
+	//PG connect
+	pg.connect(connect, function(err, client, done) {
+  if(err) {
+    return console.error('error fetching client from pool', err);
+  }
+
+	if(req.body.ascendingL!=undefined){
+  client.query('SELECT * FROM applicants ORDER BY lastname ASC',  function(err, result) {
+
+    if(err) {
+      return console.error('error running query', err);
+    }
+    res.render('managers', {applicants: result.rows});
+    done();
+
+  });
+}
+	else if(req.body.descendingL!=undefined){
+		client.query('SELECT * FROM applicants ORDER BY lastname DESC',  function(err, result) {
+
+	    if(err) {
+	      return console.error('error running query', err);
+	    }
+	    res.render('managers', {applicants: result.rows});
+	    done();
+
+	  });
+
+	}
+});
+});
+
 app.post('/add', function(req,res){
 	console.log(req.body.position);
 	pg.connect(connect, function(err, client, done) {
