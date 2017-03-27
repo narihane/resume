@@ -3,15 +3,16 @@
 <div class="row">
        <h1 class="text-center ">Managers Page</h1>
     <br>
+        <form method="post" action="/search-resume">
+          <div class="col-lg-6">
+            <div class="input-group">
 
-    <div class="col-lg-6">
-    <div class="input-group">
-      <input type="text" name="search" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default search-resume" data-id="{id}" type="button">Go!</button>
-      </span>
-    </div>
-  </div>
+          <input type="text" name="searchchar" placeholder="Press Enter to search...">
+
+
+          </div>
+        </div>
+    </form>
     <br><br><br>
 
   <!--   <div ng-controller="MainCtrl">

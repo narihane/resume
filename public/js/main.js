@@ -22,23 +22,25 @@ $(document).ready(function(){
      uploadAsync: true,
      maxFileCount: 5
  });
-	$('.dropdown-toggle').dropdown()
-	// $('.search-resume').on('click', function(){
-	// 	var id = $(this).data('rid');
-	// 	var url = '/search-resume/' +id;
-	// 		$.ajax({
-	// 			url: url,
-	// 			type:'SEARCH',
-	// 			success: function(result){
-	// 				console.log('Searching resume..');
-	// 				window.location.href='/search-resume';
-	// 			},
-	// 			error: function(err){
-	// 				console.log(err);
-	// 			}
-	// 		});
+	$('.dropdown-toggle').dropdown();
 
-	// });
+	$('.search-resume').on('click', function(){
+		console.log('ll');
+		var url = '/search-resume';
+			$.ajax({
+				url: url,
+				method:'GET',
+				success: function(result){
+					console.log('Searching resume..');
+					window.location.href='/search-resume';
+					console.log('success');
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});
+
+	});
 
 });
 

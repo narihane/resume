@@ -7,22 +7,7 @@ var	express = require('express'),
 	fs = require('fs'),
 	app = express();
 
-// db connection string
-// var config = {
-//   user: 'receipeTest', //env var: PGUSER
-//   database: 'ReceipeBook', //env var: PGDATABASE
-//   password: ' ', //env var: PGPASSWORD
-//   host: 'localhost', // Server hosting the postgres database
-//   port: 5432, //env var: PGPORT
-//   max: 10, // max number of clients in the pool
-//   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-// };
 
-
-// //this initializes a connection pool
-// //it will keep idle connections open for 30 seconds
-// //and set a limit of maximum 10 idle clients
-// var pool = new pg.Pool(config);
 
 var connect = "postgres://resume:1234@localhost/resumes";
 
@@ -37,8 +22,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function(req,res){
-	// res.render('index');
-	// console.log('TEST');
 
 	//PG connect
 	pg.connect(connect, function(err, client, done) {
@@ -52,25 +35,38 @@ app.get('/', function(req,res){
     }
     res.render('index', {applicants: result.rows});
     done();
-    // console.log(result.rows[0].number);
-    // //output: 1
+
   });
 });
 });
+
+app.post('/search-resume', function(req,res){
+
+	//PG connect
+	pg.connect(connect, function(err, client, done) {
+  if(err) {
+    return console.error('error fetching client from pool', err);
+  }
+  client.query('SELECT * FROM applicants WHERE firstname LIKE $1 || $2 || $1',['%',req.body.searchchar],  function(err, result) {
+
+    if(err) {
+      return console.error('error running query', err);
+    }
+		console.log(req.body.searchchar);
+
+    res.render('managers', {applicants: result.rows});
+    done();
+
+  });
+});
+});
+
 app.post('/add', function(req,res){
 	console.log(req.body.position);
 	pg.connect(connect, function(err, client, done) {
   if(err) {
     return console.error('error fetching client from pool', err);
   }
-	// File file = new File("myimage.gif");
-	// FileInputStream fis = new FileInputStream(file);
-	// PreparedStatement ps = conn.prepareStatement("INSERT INTO applicants(resumefile) VALUES (fis)",[req.body.inputfile]);
-	// ps.setString(1, file.getName());
-	// ps.setBinaryStream(2, fis, file.length());
-	// ps.executeUpdate();
-	// ps.close();
-	// fis.close();
 
   client.query("INSERT INTO applicants(firstname, lastname, email, position,resumefile) VALUES ($1, $2, $3, $4, $5)", [req.body.firstname, req.body.lastname, req.body.email, req.body.position, req.body.inputfile]);
   done();
@@ -78,17 +74,7 @@ app.post('/add', function(req,res){
   res.redirect('/');
 });
 });
-// app.get('/file', function(req,res){
-// 	pg.connect(connect, function(err, client, done) {
-//   if(err) {
-//     return console.error('error fetching client from pool', err);
-//   }
-// 	client.query("INSERT INTO applicants(resumefile) VALUES ($1)", [req.body.inputfile]);
-//   done();
-// 	console.log("done");
-//   res.redirect('/');
-// });
-// });
+
 
 app.post('/search', function(req,res){
   pg.connect(connect, function(err, client, done) {
@@ -97,10 +83,6 @@ app.post('/search', function(req,res){
   }
   client.query("SELECT * FROM managers WHERE username = $1 AND password = $2", [req.body.username, req.body.password], function(err, result) {
      done();
-  // console.log(result.rows[0].password);
-  // console.log(req.body.username);
-  // console.log(req.body.password);
-  // console.log(result.rowCount);
 if(result.rowCount==1)
   res.redirect('/managers');
 else if(result.rowCount==0){
@@ -112,8 +94,6 @@ else if(result.rowCount==0){
 });
 
 app.get('/managers', function(req,res){
-  // res.render('index');
-  // console.log('TEST');
 
   //PG connect
   pg.connect(connect, function(err, client, done) {
@@ -127,8 +107,7 @@ app.get('/managers', function(req,res){
     }
     res.render('managers', {applicants: result.rows});
     done();
-    // console.log(result.rows[0].number);
-    // //output: 1
+
   });
 });
 });
@@ -144,31 +123,6 @@ app.delete('/delete/:id', function(req,res){
 });
 });
 
-// fs.readFile(loc_on_disk, 'hex', function(err, imgData) {
-//         console.log('imgData',imgData);
-//         imgData = '\\x' + imgData;
-//         app.pgClient.query('insert into image_table (image) values ($1)',
-//                            [imgData],
-//                            function(err, writeResult) {
-//           console.log('err',err,'pg writeResult',writeResult);
-//         });
-//       });
-// app.get('/search-resume', function(req,res){
-//   pg.connect(connect, function(err, client, done) {
-//   if(err) {
-//     return console.error('error fetching client from pool', err);
-//   }
-//   client.query('SELECT * FROM applicants WHERE to_tsvector("english", body) @@ to_tsquery("english", "$1")',[req.body.search]);
-
-//   //   if(err) {
-//   //     return console.error('error running query', err);
-//   //   }
-//   //   // res.render('managers', {applicants: result.rows});
-//     done();
-
-//   // });
-// });
-// });
 
 
 app.listen(3000, function(){
